@@ -1,37 +1,40 @@
-    "use strict";
-    function hello() {
-        console.log("Hello " + this.name);
-    }
-    var name = "glolbal";
+function hello() {
+    console.log("Hello " + this.name);
+}
+var name = "glolbal";
 
-   hello();
+hello(); // Hello glolbal
 
-    var me = {
-        name: "Martin",
-        hello: hello,
-        myself: {
-            i: {
-                hello: hello
-            }
+var me = {
+    name: "Martin",
+    hello: hello,
+    myself: {
+        i: {
+            hello: hello
         }
-    };
+    }
+};
 
-    me.hello();
-    me.myself.i.hello();
+me.hello(); // Hello Martin
+me.myself.i.hello(); // Hello undefined
 
-    hello.call(me);
-    hello.apply(me);
+hello.call(me); // Hello Martin
+hello.apply(me); // Hello Martin
+hello.bind(me)(); // Hello Martin
 
-    hello.bind(me)();
+var glenn = {
+    name: 'Glenn'
+};
 
-me.hello.call(you);
-me.hello.apply(you);
+me.hello.call(glenn); // Hello Glenn
+me.hello.apply(glenn); // Hello Glenn
 
-var boundHello = me.hello.bind(you);
+var boundHello = me.hello.bind(glenn);
 me.boundHello = boundHello;
 
-me.boundHello();
+me.boundHello(); // Hello Glenn
 
-me.boundHello.call(me);
-me.boundHello.bind(me)();
+me.boundHello.call(me); // Hello Glenn
+me.boundHello.bind(me)(); // Hello Glenn
 
+new me.boundHello(); // Hello undefined

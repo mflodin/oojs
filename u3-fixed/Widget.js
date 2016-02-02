@@ -4,15 +4,13 @@
             this.width = width;
             this.height = height;
             this.className = className;
-            if(this.el) {
-                this.el.className = className;
-                this.el.style.width = width;
-                this.el.style.height = height;
-            }
         },
 
         render: function render(attachPoint) {
             if(this.el) {
+                this.el.className = this.className;
+                this.el.style.width = this.width;
+                this.el.style.height = this.height;
                 attachPoint.appendChild(this.el);
             }
         },

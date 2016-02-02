@@ -3,13 +3,11 @@
         init: function init(opts) {
             opts = opts || {};
             this.className = opts.className;
-            if(this.el && this.className) {
-                this.el.className = this.className;
-            }
         },
 
         render: function render(attachPoint) {
             if(this.el) {
+                this.el.className = this.className;
                 attachPoint.appendChild(this.el);
             }
         },
